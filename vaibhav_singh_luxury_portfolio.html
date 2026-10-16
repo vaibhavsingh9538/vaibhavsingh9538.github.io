@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Singh — Marketing Strategist & Brand Architect</title>
+
+    <!-- Google Fonts: Playfair Display (Editorial Serif), Plus Jakarta Sans (Clean Sans), JetBrains Mono (Technical Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#080808',
+                        charcoal: '#121215',
+                        surface: '#17171C',
+                        borderdark: '#26262B',
+                        alabaster: '#FAF9F6',
+                        silver: '#A1A1AA',
+                        sovereign: '#FF5500',
+                        amberlux: '#FF7733'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Luxury Theme Styling */
+        body {
+            background-color: #080808;
+            color: #FAF9F6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #26262B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF5500;
+        }
+
+        /* Infinite Luxury Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 34s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Editorial Monochrome-to-Color Image Filter */
+        .editorial-img {
+            filter: grayscale(100%) contrast(1.18);
+            transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s ease;
+        }
+        .group:hover .editorial-img {
+            filter: grayscale(0%) contrast(1.05);
+            transform: scale(1.05);
+        }
+
+        /* Page Transition Animation */
+        .page-section {
+            display: none;
+            animation: fadeInPage 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Live Edit Mode Highlighting */
+        body.edit-mode-active [data-editable="true"] {
+            outline: 1px dashed rgba(255, 85, 0, 0.65);
+            outline-offset: 4px;
+            border-radius: 4px;
+            cursor: text;
+            transition: all 0.2s ease;
+        }
+        body.edit-mode-active [data-editable="true"]:hover,
+        body.edit-mode-active [data-editable="true"]:focus {
+            outline: 2px solid #FF5500;
+            background-color: rgba(255, 85, 0, 0.08);
+        }
+
+        /* Subtle Ambient Grid Background */
+        .bg-luxury-grid {
+            background-size: 48px 48px;
+            background-image: 
+                linear-gradient(to right, rgba(38, 38, 43, 0.22) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(38, 38, 43, 0.22) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sovereign selection:text-obsidian bg-luxury-grid">
+
+    <!-- =====================================================================
+         STICKY GLASSMORPHISM TOP NAVIGATION BAR
+    ====================================================================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-obsidian/85 backdrop-blur-xl border-b border-borderdark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand Logo -->
+            <button onclick="switchPage('home')" class="flex items-center gap-3 text-left group focus:outline-none">
+                <div class="w-10 h-10 rounded-xl bg-charcoal border border-borderdark group-hover:border-sovereign flex items-center justify-center font-serif font-bold text-lg text-alabaster transition-colors shadow-inner">
+                    V<span class="w-2 h-2 bg-sovereign inline-block ml-0.5"></span>
+                </div>
+                <div>
+                    <span data-editable="true" class="block text-sm font-extrabold tracking-wider text-alabaster uppercase">
+                        VAIBHAV SINGH<span class="inline-block w-2 h-2 bg-sovereign ml-1 align-baseline"></span>
+                    </span>
+                    <span data-editable="true" class="block text-[10px] font-mono uppercase tracking-[0.22em] text-silver">
+                        MARKETING & STRATEGY
+                    </span>
+                </div>
+            </button>
+
+            <!-- Center Desktop Navigation Pills -->
+            <nav class="hidden lg:flex items-center gap-1 bg-charcoal p-1.5 rounded-full border border-borderdark">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all bg-sovereign text-obsidian font-bold shadow-[0_0_20px_rgba(255,85,0,0.4)]">
+                    Home
+                </button>
+                <button onclick="switchPage('about')" id="nav-about" class="nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all text-silver hover:text-alabaster">
+                    About
+                </button>
+                <button onclick="switchPage('experience')" id="nav-experience" class="nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all text-silver hover:text-alabaster">
+                    Experience
+                </button>
+                <button onclick="switchPage('education')" id="nav-education" class="nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all text-silver hover:text-alabaster">
+                    Education
+                </button>
+                <button onclick="switchPage('skills')" id="nav-skills" class="nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all text-silver hover:text-alabaster">
+                    Skills & Certs
+                </button>
+            </nav>
+
+            <!-- Right Interactive Controls: Edit Text Toggle & Connect Modal -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button id="edit-toggle-btn" onclick="toggleEditMode()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-charcoal hover:bg-surface border border-borderdark hover:border-sovereign text-xs font-mono uppercase tracking-wider text-alabaster transition-all">
+                    <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-sovereign"></i>
+                    <span id="edit-toggle-label">Edit Page Text</span>
+                </button>
+
+                <button onclick="openContactModal()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sovereign hover:bg-amberlux text-obsidian font-bold text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(255,85,0,0.3)]">
+                    <span>Connect</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="flex lg:hidden items-center gap-2">
+                <button onclick="toggleEditMode()" id="mobile-edit-btn" class="p-2.5 rounded-xl bg-charcoal border border-borderdark text-sovereign" title="Toggle Live Text Edit">
+                    <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-charcoal border border-borderdark text-alabaster" aria-label="Open Menu">
+                    <i data-lucide="menu" id="mobile-menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-charcoal border-b border-borderdark px-4 pt-3 pb-6 space-y-2">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between bg-sovereign text-obsidian font-bold" data-page="home">
+                <span>01 // Home (Landing)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between text-silver hover:bg-obsidian hover:text-alabaster" data-page="about">
+                <span>02 // About & Roadmap</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <button onclick="switchPage('experience'); toggleMobileMenu();" class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between text-silver hover:bg-obsidian hover:text-alabaster" data-page="experience">
+                <span>03 // Experience (KOOK-N-KLEAN)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <button onclick="switchPage('education'); toggleMobileMenu();" class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between text-silver hover:bg-obsidian hover:text-alabaster" data-page="education">
+                <span>04 // Education (#17 Rank)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <button onclick="switchPage('skills'); toggleMobileMenu();" class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between text-silver hover:bg-obsidian hover:text-alabaster" data-page="skills">
+                <span>05 // Skills & Google Certs</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <div class="pt-3 border-t border-borderdark flex gap-2">
+                <button onclick="openContactModal(); toggleMobileMenu();" class="w-full py-3 rounded-xl bg-sovereign text-obsidian font-mono text-xs font-bold uppercase tracking-widest">
+                    Contact / Connect
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Floating Live-Edit Mode Status Banner -->
+    <div id="edit-banner" class="hidden fixed bottom-6 right-6 z-50 bg-charcoal/95 backdrop-blur-xl border-2 border-sovereign px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-4">
+        <span class="w-2.5 h-2.5 rounded-full bg-sovereign animate-ping"></span>
+        <div class="text-xs">
+            <span class="font-mono uppercase font-bold text-sovereign block">Live Edit Mode Active</span>
+            <span class="text-silver">Click any outlined text on the page to rewrite it directly.</span>
+        </div>
+        <button onclick="toggleEditMode()" class="px-3 py-1.5 rounded-lg bg-sovereign text-obsidian font-mono text-xs font-bold uppercase">
+            Done
+        </button>
+    </div>
+
+    <!-- =====================================================================
+         MAIN SPA VIEWPORT CONTAINER
+    ====================================================================== -->
+    <main class="pt-28 pb-20">
+
+        <!-- =================================================================
+             PAGE 1: EXPANSIVE CURIOSITY-DRIVEN LANDING PAGE (HOME)
+        ================================================================== -->
+        <div id="page-home" class="page-section active space-y-28 md:space-y-36">
+
+            <!-- SECTION 1: LUXURY EDITORIAL HERO -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-4 md:pt-8">
+                <!-- Ambient Sovereign Orange Glow -->
+                <div class="pointer-events-none absolute -top-16 right-1/4 w-96 h-96 rounded-full bg-sovereign/10 blur-[130px]"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Asymmetric Column (7 cols) -->
+                    <div class="lg:col-span-7 space-y-8">
+                        <!-- Status Pill -->
+                        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-charcoal border border-borderdark hover:border-sovereign/60 transition-colors">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sovereign opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-sovereign"></span>
+                            </span>
+                            <span data-editable="true" class="text-[11px] font-mono uppercase tracking-[0.2em] text-alabaster">
+                                BBA MARKETING @ JK BUSINESS SCHOOL • AVAILABLE FOR OPPORTUNITIES
+                            </span>
+                        </div>
+
+                        <!-- Giant Editorial Headline -->
+                        <div class="space-y-4">
+                            <p data-editable="true" class="text-xs sm:text-sm font-mono uppercase tracking-[0.28em] text-sovereign">
+                                VAIBHAV SINGH // MARKETING STRATEGIST
+                            </p>
+                            <h1 data-editable="true" class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-alabaster">
+                                Architecting Brands Through <span class="font-serif italic font-normal text-sovereign">Data, Curiosity</span> &amp; Craft.
+                            </h1>
+                        </div>
+
+                        <!-- Personalized Subheadline -->
+                        <p data-editable="true" class="text-base sm:text-lg text-silver max-w-2xl leading-relaxed">
+                            I am <strong class="text-alabaster font-semibold">Vaibhav Singh</strong>, a Marketing specialization undergraduate at JK Business School, Gurugram (Ranked <span class="text-sovereign font-mono">#17</span> in College). From field brand positioning at <strong class="text-alabaster font-semibold">KOOK-N-KLEAN</strong> to technical search architecture via Google Search Console, I turn consumer psychology into measurable commercial growth.
+                        </p>
+
+                        <!-- Interactive CTA Buttons -->
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <button onclick="switchPage('experience')" class="group inline-flex items-center gap-3 px-8 py-4 bg-sovereign hover:bg-amberlux text-obsidian font-bold text-xs sm:text-sm font-mono uppercase tracking-wider rounded-full transition-all shadow-[0_0_30px_rgba(255,85,0,0.35)]">
+                                <span>Explore Experience</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                            </button>
+
+                            <a href="#kook-spotlight" class="inline-flex items-center gap-3 px-7 py-4 bg-charcoal hover:bg-surface text-alabaster border border-borderdark hover:border-sovereign font-mono text-xs sm:text-sm uppercase tracking-wider rounded-full transition-all">
+                                <span>Jump to Case Study</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-sovereign"></i>
+                            </a>
+                        </div>
+
+                        <!-- Quick Metric Counters -->
+                        <div class="pt-8 border-t border-borderdark grid grid-cols-3 gap-6 max-w-xl">
+                            <div>
+                                <div data-editable="true" class="text-2xl sm:text-4xl font-serif font-bold text-alabaster">
+                                    #17<span class="text-sovereign text-xl font-sans">th</span>
+                                </div>
+                                <div data-editable="true" class="text-[11px] font-mono uppercase tracking-wider text-silver mt-1">
+                                    College Academic Rank
+                                </div>
+                            </div>
+                            <div class="border-l border-borderdark pl-6">
+                                <div data-editable="true" class="text-2xl sm:text-4xl font-serif font-bold text-alabaster">
+                                    #130<span class="text-sovereign text-xl font-sans">th</span>
+                                </div>
+                                <div data-editable="true" class="text-[11px] font-mono uppercase tracking-wider text-silver mt-1">
+                                    University Standing
+                                </div>
+                            </div>
+                            <div class="border-l border-borderdark pl-6">
+                                <div data-editable="true" class="text-2xl sm:text-4xl font-serif font-bold text-alabaster">
+                                    Google<span class="text-sovereign">.</span>
+                                </div>
+                                <div data-editable="true" class="text-[11px] font-mono uppercase tracking-wider text-silver mt-1">
+                                    Coursera Certified
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: High-Fashion Monochrome Editorial Visual Card (5 cols) -->
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden border border-borderdark hover:border-sovereign/70 bg-charcoal group shadow-2xl transition-all duration-500">
+                            <div class="aspect-[4/5] overflow-hidden relative">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=85" 
+                                    onerror="this.src='https://placehold.co/800x1000/121215/FF5500?text=VAIBHAV+SINGH'"
+                                    alt="Vaibhav Singh Editorial Showcase" 
+                                    class="w-full h-full object-cover editorial-img"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/45 to-transparent"></div>
+                                <div class="absolute inset-0 bg-sovereign/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
+                            </div>
+
+                            <!-- Top Right Editorial Tag -->
+                            <div class="absolute top-5 right-5 bg-obsidian/85 backdrop-blur-md border border-borderdark px-4 py-2 rounded-full flex items-center gap-2">
+                                <span class="text-[11px] font-mono uppercase tracking-widest text-alabaster">PORTFOLIO // 2026</span>
+                                <span class="w-2 h-2 rounded-full bg-sovereign"></span>
+                            </div>
+
+                            <!-- Floating Glassmorphic Badge Highlighting KOOK-N-KLEAN -->
+                            <div class="absolute bottom-5 left-5 right-5 p-6 rounded-2xl bg-obsidian/90 backdrop-blur-xl border border-borderdark group-hover:border-sovereign/60 transition-all">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-sovereign font-bold">
+                                        FEATURED CORPORATE INTERNSHIP
+                                    </span>
+                                    <span class="text-[11px] font-mono text-silver">CONSUMER &amp; RETAIL</span>
+                                </div>
+                                <h3 data-editable="true" class="text-xl font-bold text-alabaster mb-1">
+                                    KOOK-N-KLEAN — Marketing Intern
+                                </h3>
+                                <p data-editable="true" class="text-xs text-silver leading-relaxed mb-4">
+                                    Executed consumer positioning, product value communication, and retail channel analytics for everyday household utility products.
+                                </p>
+                                <div class="flex items-center justify-between pt-3 border-t border-borderdark">
+                                    <span class="text-xs font-mono text-alabaster flex items-center gap-1.5">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sovereign"></i>
+                                        Gurugram, India
+                                    </span>
+                                    <button onclick="switchPage('experience')" class="text-xs font-mono uppercase tracking-wider text-sovereign hover:underline flex items-center gap-1">
+                                        <span>Inspect Dossier</span>
+                                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 2: INFINITE SCROLLING LUXURY TICKER / MARQUEE -->
+            <section class="py-5 bg-charcoal border-y border-borderdark overflow-hidden relative">
+                <div class="animate-marquee flex items-center gap-10 text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-alabaster">
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> DIGITAL MARKETING</span>
+                    <span class="flex items-center gap-4 text-silver"><span class="w-2 h-2 bg-sovereign inline-block"></span> CONSUMER POSITIONING</span>
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> KOOK-N-KLEAN INTERNSHIP</span>
+                    <span class="flex items-center gap-4 text-silver"><span class="w-2 h-2 bg-sovereign inline-block"></span> GOOGLE SEARCH CONSOLE</span>
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> E-COMMERCE ARCHITECTURE</span>
+                    <span class="flex items-center gap-4 text-silver"><span class="w-2 h-2 bg-sovereign inline-block"></span> BRAND STRATEGY</span>
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> SQUARESPACE &amp; WORDPRESS</span>
+                    <span class="flex items-center gap-4 text-silver pr-10"><span class="w-2 h-2 bg-sovereign inline-block"></span> MARKET ANALYTICS</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> DIGITAL MARKETING</span>
+                    <span class="flex items-center gap-4 text-silver"><span class="w-2 h-2 bg-sovereign inline-block"></span> CONSUMER POSITIONING</span>
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> KOOK-N-KLEAN INTERNSHIP</span>
+                    <span class="flex items-center gap-4 text-silver"><span class="w-2 h-2 bg-sovereign inline-block"></span> GOOGLE SEARCH CONSOLE</span>
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> E-COMMERCE ARCHITECTURE</span>
+                    <span class="flex items-center gap-4 text-silver"><span class="w-2 h-2 bg-sovereign inline-block"></span> BRAND STRATEGY</span>
+                    <span class="flex items-center gap-4"><span class="w-2 h-2 bg-sovereign inline-block"></span> SQUARESPACE &amp; WORDPRESS</span>
+                    <span class="flex items-center gap-4 text-silver pr-10"><span class="w-2 h-2 bg-sovereign inline-block"></span> MARKET ANALYTICS</span>
+                </div>
+            </section>
+
+            <!-- SECTION 3: CURIOSITY HOOK — "3 STRATEGIC QUESTIONS THAT DRIVE MY WORK" -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            <span>INTERACTIVE CURIOSITY EXPLORER</span>
+                        </div>
+                        <h2 data-editable="true" class="text-3xl sm:text-5xl font-extrabold text-alabaster tracking-tight">
+                            3 Strategic Questions <span class="font-serif italic font-normal text-sovereign">That Drive My Work.</span>
+                        </h2>
+                    </div>
+                    <p data-editable="true" class="text-sm sm:text-base text-silver max-w-md">
+                        Great marketing starts with sharper questions. Click any question on the left to inspect my strategic thesis, frameworks, and empirical benchmarks.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Left Side: 3 Clickable Provocative Questions (5 cols) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                        
+                        <button onclick="selectQuestion(0)" id="q-btn-0" class="q-selector w-full text-left p-6 rounded-2xl border transition-all duration-300 bg-surface border-sovereign shadow-[0_0_25px_rgba(255,85,0,0.12)]">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="q-badge-0" class="text-xs font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-sovereign text-obsidian font-bold">
+                                    QUESTION // 01
+                                </span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-sovereign"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-alabaster mb-2 leading-snug">
+                                Why do 70% of digital campaigns lose attention in the first 3 seconds?
+                            </h3>
+                            <p class="text-xs text-silver">
+                                Overcoming banner blindness through intent alignment &amp; structural clarity.
+                            </p>
+                        </button>
+
+                        <button onclick="selectQuestion(1)" id="q-btn-1" class="q-selector w-full text-left p-6 rounded-2xl border transition-all duration-300 bg-charcoal border-borderdark hover:border-sovereign/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="q-badge-1" class="text-xs font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">
+                                    QUESTION // 02
+                                </span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-silver"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-alabaster mb-2 leading-snug">
+                                How does a household brand like KOOK-N-KLEAN turn everyday utility into brand loyalty?
+                            </h3>
+                            <p class="text-xs text-silver">
+                                Lessons from FMCG &amp; home-care consumer trust rituals.
+                            </p>
+                        </button>
+
+                        <button onclick="selectQuestion(2)" id="q-btn-2" class="q-selector w-full text-left p-6 rounded-2xl border transition-all duration-300 bg-charcoal border-borderdark hover:border-sovereign/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="q-badge-2" class="text-xs font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">
+                                    QUESTION // 03
+                                </span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-silver"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-alabaster mb-2 leading-snug">
+                                Where does organic search (SEO) meet real-world retail conversion?
+                            </h3>
+                            <p class="text-xs text-silver">
+                                Bridging Google Search Console data with physical &amp; digital storefronts.
+                            </p>
+                        </button>
+
+                    </div>
+
+                    <!-- Right Side: Dynamic Strategic Thesis & Visual Display (7 cols) -->
+                    <div class="lg:col-span-7 bg-charcoal border border-borderdark rounded-3xl overflow-hidden flex flex-col justify-between group">
+                        <div class="relative h-64 sm:h-72 overflow-hidden border-b border-borderdark">
+                            <img 
+                                id="q-display-image"
+                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80" 
+                                onerror="this.src='https://placehold.co/900x500/121215/FF5500?text=STRATEGIC+THESIS'"
+                                alt="Strategic Inquiry Visual" 
+                                class="w-full h-full object-cover editorial-img"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-obsidian/60 to-transparent"></div>
+
+                            <div class="absolute bottom-5 left-6 right-6 flex flex-wrap items-end justify-between gap-4">
+                                <div>
+                                    <span id="q-display-tag" class="text-[11px] font-mono uppercase tracking-[0.2em] text-sovereign block mb-1">
+                                        VAIBHAV'S STRATEGIC THESIS // 01
+                                    </span>
+                                    <h4 id="q-display-subtitle" class="text-xl sm:text-2xl font-bold text-alabaster max-w-lg">
+                                        Intent-Driven Discovery Over Loud Interruption
+                                    </h4>
+                                </div>
+                                <div class="bg-obsidian/90 backdrop-blur-md border border-sovereign/50 px-4 py-2.5 rounded-xl text-right">
+                                    <div id="q-display-metric-val" class="text-2xl font-serif font-bold text-sovereign">3.8x</div>
+                                    <div id="q-display-metric-label" class="text-[10px] font-mono uppercase tracking-wider text-alabaster">Higher Retention</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8 space-y-6">
+                            <p id="q-display-body" data-editable="true" class="text-alabaster/90 text-base sm:text-lg leading-relaxed">
+                                "Most campaigns fail in the first 3 seconds because they lead with ego rather than immediate consumer utility. When a user clicks a search result or ad, they are looking for a mirror to their problem. By aligning keyword intent in Google Search Console with clean, high-contrast landing pages on WordPress or Squarespace, bounce rates plummet and trust compounds."
+                            </p>
+
+                            <div class="p-4 rounded-xl bg-obsidian border border-borderdark flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-sovereign/15 border border-sovereign/40 flex items-center justify-center text-sovereign shrink-0">
+                                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                                </div>
+                                <p id="q-display-benchmark" class="text-xs sm:text-sm text-silver">
+                                    <strong class="text-alabaster">Actionable Takeaway:</strong> Pair search query diagnostics with frictionless above-the-fold value propositions before scaling paid Google Ads spend.
+                                </p>
+                            </div>
+
+                            <div>
+                                <div class="text-xs font-mono uppercase tracking-widest text-silver mb-3">
+                                    Execution Frameworks Applied:
+                                </div>
+                                <div id="q-display-pillars" class="flex flex-wrap gap-2.5">
+                                    <span class="px-3.5 py-1.5 rounded-full bg-surface border border-borderdark text-xs font-mono text-alabaster flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-sovereign"></span> Search Intent Mapping
+                                    </span>
+                                    <span class="px-3.5 py-1.5 rounded-full bg-surface border border-borderdark text-xs font-mono text-alabaster flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-sovereign"></span> Above-The-Fold Clarity
+                                    </span>
+                                    <span class="px-3.5 py-1.5 rounded-full bg-surface border border-borderdark text-xs font-mono text-alabaster flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-sovereign"></span> CTR Optimization
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: FEATURED CASE STUDY SPOTLIGHT — KOOK-N-KLEAN INTERNSHIP -->
+            <section id="kook-spotlight" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+                <div class="rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign/50 transition-all overflow-hidden shadow-2xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-12">
+                        
+                        <!-- Left Editorial Visual Column (5 cols) -->
+                        <div class="lg:col-span-5 relative min-h-[380px] lg:min-h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-borderdark group">
+                            <img 
+                                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1000&q=80" 
+                                onerror="this.src='https://placehold.co/800x900/121215/FF5500?text=KOOK-N-KLEAN'"
+                                alt="KOOK-N-KLEAN Internship Case Study" 
+                                class="w-full h-full object-cover editorial-img"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/55 to-transparent"></div>
+
+                            <div class="absolute top-6 left-6">
+                                <span class="px-3.5 py-1.5 rounded-full bg-sovereign text-obsidian font-mono text-xs font-bold uppercase tracking-wider">
+                                    SPOTLIGHT CASE STUDY
+                                </span>
+                            </div>
+
+                            <div class="absolute bottom-6 left-6 right-6 space-y-2">
+                                <div class="text-xs font-mono uppercase tracking-[0.2em] text-sovereign">
+                                    SUMMER MARKETING INTERNSHIP
+                                </div>
+                                <h3 data-editable="true" class="text-3xl font-black text-alabaster tracking-tight">
+                                    KOOK-N-KLEAN
+                                </h3>
+                                <p data-editable="true" class="text-xs text-silver">
+                                    Consumer Positioning, Retail Channel Strategy &amp; Brand Communication
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Interactive Magazine Feature (7 cols) -->
+                        <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8">
+                            <div class="space-y-4">
+                                <div class="flex flex-wrap items-center justify-between gap-4">
+                                    <span class="text-xs font-mono uppercase tracking-[0.22em] text-silver">
+                                        MAGAZINE FEATURE // KOOK-N-KLEAN
+                                    </span>
+                                    <button onclick="switchPage('experience')" class="text-xs font-mono uppercase tracking-wider text-sovereign hover:underline flex items-center gap-1">
+                                        <span>Full Experience Timeline</span>
+                                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                </div>
+
+                                <h2 data-editable="true" class="text-2xl sm:text-4xl font-extrabold text-alabaster leading-tight">
+                                    Translating Functional Household Quality into <span class="font-serif italic font-normal text-sovereign">Everyday Brand Preference.</span>
+                                </h2>
+
+                                <p data-editable="true" class="text-silver text-sm sm:text-base leading-relaxed">
+                                    During my internship at <strong class="text-alabaster">KOOK-N-KLEAN</strong>, I worked at the intersection of consumer behavior, retail market research, and brand messaging—discovering first-hand how household products win shelf space and customer repeat rates.
+                                </p>
+                            </div>
+
+                            <!-- 3 Clickable Case Study Tabs -->
+                            <div class="space-y-6">
+                                <div class="flex flex-wrap gap-2 border-b border-borderdark pb-4">
+                                    <button onclick="selectKookTab(0)" id="kook-tab-0" class="kook-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all bg-sovereign text-obsidian font-bold">
+                                        01. Brand Context
+                                    </button>
+                                    <button onclick="selectKookTab(1)" id="kook-tab-1" class="kook-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all bg-obsidian text-silver hover:text-alabaster border border-borderdark">
+                                        02. Field &amp; Digital Execution
+                                    </button>
+                                    <button onclick="selectKookTab(2)" id="kook-tab-2" class="kook-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all bg-obsidian text-silver hover:text-alabaster border border-borderdark">
+                                        03. Key Strategic Takeaways
+                                    </button>
+                                </div>
+
+                                <!-- Tab Content 0 -->
+                                <div id="kook-content-0" class="kook-tab-panel space-y-4">
+                                    <h4 class="text-lg font-bold text-alabaster">
+                                        Capturing Consumer Trust in a Competitive Utility Market
+                                    </h4>
+                                    <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                                        In the consumer home-care and kitchen hygiene segment, buyers weigh price, efficacy, and visual credibility in seconds. At <strong class="text-alabaster">KOOK-N-KLEAN</strong>, our primary challenge was differentiating our product line against legacy competitors while strengthening visibility across both local retail distributors and digital touchpoints.
+                                    </p>
+                                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                                        <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark">
+                                            <div class="text-lg font-serif font-bold text-sovereign">FMCG</div>
+                                            <div class="text-[10px] font-mono uppercase text-silver">Market Category</div>
+                                        </div>
+                                        <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark">
+                                            <div class="text-lg font-serif font-bold text-alabaster">B2B + B2C</div>
+                                            <div class="text-[10px] font-mono uppercase text-silver">Dual Channel Focus</div>
+                                        </div>
+                                        <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark col-span-2 sm:col-span-1">
+                                            <div class="text-lg font-serif font-bold text-sovereign">100%</div>
+                                            <div class="text-[10px] font-mono uppercase text-silver">Data-Backed Audits</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tab Content 1 -->
+                                <div id="kook-content-1" class="kook-tab-panel hidden space-y-3">
+                                    <h4 class="text-lg font-bold text-alabaster">
+                                        Market Audits, Value Messaging &amp; Excel Tracking
+                                    </h4>
+                                    <ul class="space-y-2.5 text-sm text-silver">
+                                        <li class="flex items-start gap-2.5">
+                                            <i data-lucide="check-circle-2" class="w-4 h-4 text-sovereign shrink-0 mt-1"></i>
+                                            <span data-editable="true">Conducted competitive benchmarking across pricing tiers, packaging claims, and distributor margins to sharpen KOOK-N-KLEAN's market positioning.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2.5">
+                                            <i data-lucide="check-circle-2" class="w-4 h-4 text-sovereign shrink-0 mt-1"></i>
+                                            <span data-editable="true">Developed clear promotional hooks and brand collateral that highlighted hygiene reliability and everyday household value.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2.5">
+                                            <i data-lucide="check-circle-2" class="w-4 h-4 text-sovereign shrink-0 mt-1"></i>
+                                            <span data-editable="true">Built structured Microsoft Excel sheets to track retailer feedback, regional demand trends, and campaign response rates.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Tab Content 2 -->
+                                <div id="kook-content-2" class="kook-tab-panel hidden space-y-4">
+                                    <h4 class="text-lg font-bold text-alabaster">
+                                        Where Academic BBA Theory Meets Real Commercial Velocity
+                                    </h4>
+                                    <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                                        Working with <strong class="text-alabaster">KOOK-N-KLEAN</strong> proved that digital marketing cannot exist in a vacuum. True brand equity is built when online search presence, physical packaging clarity, and retailer confidence tell the exact same story.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Tags -->
+                            <div class="pt-4 border-t border-borderdark flex flex-wrap items-center justify-between gap-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] font-mono px-3 py-1 rounded bg-obsidian border border-borderdark text-silver">Consumer Positioning</span>
+                                    <span class="text-[11px] font-mono px-3 py-1 rounded bg-obsidian border border-borderdark text-silver">Retail Analytics</span>
+                                    <span class="text-[11px] font-mono px-3 py-1 rounded bg-obsidian border border-borderdark text-silver">Microsoft Excel</span>
+                                </div>
+                                <button onclick="switchPage('experience')" class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-alabaster hover:text-sovereign transition-colors">
+                                    <span>View All Experience</span>
+                                    <i data-lucide="chevron-right" class="w-4 h-4 text-sovereign"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: INTERACTIVE MARKETING BLUEPRINT SIMULATOR -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                            <i data-lucide="sliders" class="w-4 h-4"></i>
+                            <span>INTERACTIVE WORKFLOW SIMULATOR</span>
+                        </div>
+                        <h2 data-editable="true" class="text-3xl sm:text-5xl font-extrabold text-alabaster tracking-tight">
+                            Marketing <span class="font-serif italic font-normal text-sovereign">Blueprint Simulator.</span>
+                        </h2>
+                    </div>
+                    <p data-editable="true" class="text-sm sm:text-base text-silver max-w-md">
+                        Toggle between my 3 core strategic pillars below to inspect the exact 4-step workflow and technical stack I deploy.
+                    </p>
+                </div>
+
+                <!-- 3 Strategic Pillar Toggle Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="selectBlueprint(0)" id="bp-btn-0" class="bp-selector p-6 rounded-2xl border text-left transition-all bg-surface border-sovereign shadow-[0_0_30px_rgba(255,85,0,0.12)]">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                PILLAR // 01
+                            </span>
+                            <span id="bp-dot-0" class="w-3 h-3 rounded-full bg-sovereign"></span>
+                        </div>
+                        <h3 class="text-lg font-bold text-alabaster mb-1">Search &amp; SEO Architecture</h3>
+                        <p class="text-xs text-silver">Compounding organic visibility via Google Search Console</p>
+                    </button>
+
+                    <button onclick="selectBlueprint(1)" id="bp-btn-1" class="bp-selector p-6 rounded-2xl border text-left transition-all bg-charcoal border-borderdark hover:border-sovereign/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                PILLAR // 02
+                            </span>
+                            <span id="bp-dot-1" class="w-3 h-3 rounded-full bg-borderdark"></span>
+                        </div>
+                        <h3 class="text-lg font-bold text-alabaster mb-1">Consumer Brand Positioning</h3>
+                        <p class="text-xs text-silver">FMCG &amp; retail differentiation (KOOK-N-KLEAN model)</p>
+                    </button>
+
+                    <button onclick="selectBlueprint(2)" id="bp-btn-2" class="bp-selector p-6 rounded-2xl border text-left transition-all bg-charcoal border-borderdark hover:border-sovereign/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                PILLAR // 03
+                            </span>
+                            <span id="bp-dot-2" class="w-3 h-3 rounded-full bg-borderdark"></span>
+                        </div>
+                        <h3 class="text-lg font-bold text-alabaster mb-1">E-Commerce Funnel Design</h3>
+                        <p class="text-xs text-silver">High-converting WordPress &amp; Squarespace storefronts</p>
+                    </button>
+                </div>
+
+                <!-- Dynamic Blueprint Execution Board -->
+                <div class="p-6 sm:p-10 rounded-3xl bg-charcoal border border-borderdark space-y-8">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-borderdark">
+                        <div class="space-y-2 max-w-2xl">
+                            <div id="bp-subtitle" class="text-xs font-mono uppercase tracking-widest text-sovereign">
+                                ACTIVE BLUEPRINT // SEARCH &amp; SEO ARCHITECTURE
+                            </div>
+                            <h3 id="bp-objective" class="text-2xl sm:text-3xl font-extrabold text-alabaster">
+                                Capture high-intent search queries and build sustainable domain authority without relying solely on paid ad spend.
+                            </h3>
+                        </div>
+
+                        <div id="bp-tools" class="flex flex-wrap gap-2">
+                            <!-- Dynamically populated tool pills -->
+                        </div>
+                    </div>
+
+                    <!-- 4-Step Workflow Cards -->
+                    <div id="bp-steps-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Dynamically populated steps -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: EDITORIAL BENTO GRID (VISUAL HIGHLIGHTS) -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                            <span>ARCHITECTURAL OVERVIEW</span>
+                        </div>
+                        <h2 data-editable="true" class="text-3xl sm:text-5xl font-extrabold text-alabaster tracking-tight">
+                            The Executive <span class="font-serif italic font-normal text-sovereign">Bento Grid.</span>
+                        </h2>
+                    </div>
+                    <p data-editable="true" class="text-sm sm:text-base text-silver max-w-md">
+                        Click any card below to jump directly to my academic honors, verified Google credentials, technical stack, or 2029 Germany roadmap.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    
+                    <!-- Bento Card 1: Academic Excellence (#17 Rank at JKBS) (7 cols) -->
+                    <div onclick="switchPage('education')" class="md:col-span-7 cursor-pointer group relative rounded-3xl overflow-hidden bg-charcoal border border-borderdark hover:border-sovereign transition-all p-8 flex flex-col justify-between min-h-[320px]">
+                        <img 
+                            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" 
+                            onerror="this.src='https://placehold.co/900x500/121215/FF5500?text=JK+BUSINESS+SCHOOL'"
+                            alt="JK Business School" 
+                            class="absolute inset-0 w-full h-full object-cover editorial-img opacity-25 group-hover:opacity-35"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/80 to-transparent"></div>
+
+                        <div class="relative z-10 flex items-center justify-between">
+                            <span class="px-3.5 py-1.5 rounded-full bg-obsidian/90 border border-borderdark text-[11px] font-mono uppercase tracking-widest text-sovereign">
+                                ACADEMIC EXCELLENCE // JKBS
+                            </span>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-silver group-hover:text-sovereign transition-colors"></i>
+                        </div>
+
+                        <div class="relative z-10 space-y-3 mt-12">
+                            <div class="flex flex-wrap items-baseline gap-4">
+                                <span class="text-5xl sm:text-6xl font-serif font-bold text-alabaster">#17</span>
+                                <span class="text-xs sm:text-sm font-mono uppercase tracking-widest text-sovereign">
+                                    IN COLLEGE // #130 UNIVERSITY RANK
+                                </span>
+                            </div>
+                            <h3 data-editable="true" class="text-2xl font-bold text-alabaster">
+                                BBA in Marketing — JK Business School, Gurugram
+                            </h3>
+                            <p data-editable="true" class="text-xs sm:text-sm text-silver max-w-xl">
+                                Combining top-tier academic discipline with hands-on execution in consumer behavior, brand management, and digital commerce.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bento Card 2: Google Coursera Credentials (5 cols) -->
+                    <div onclick="switchPage('skills')" class="md:col-span-5 cursor-pointer group relative rounded-3xl overflow-hidden bg-charcoal border border-borderdark hover:border-sovereign transition-all p-8 flex flex-col justify-between min-h-[320px]">
+                        <img 
+                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" 
+                            onerror="this.src='https://placehold.co/700x500/121215/FF5500?text=GOOGLE+CERTIFIED'"
+                            alt="Google Career Certificates" 
+                            class="absolute inset-0 w-full h-full object-cover editorial-img opacity-20 group-hover:opacity-30"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/85 to-transparent"></div>
+
+                        <div class="relative z-10 flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-sovereign/15 border border-sovereign/40 flex items-center justify-center text-sovereign">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-mono uppercase tracking-widest text-silver group-hover:text-sovereign">
+                                COURSERA // GOOGLE →
+                            </span>
+                        </div>
+
+                        <div class="relative z-10 space-y-3 my-6">
+                            <h3 data-editable="true" class="text-2xl font-bold text-alabaster">
+                                Verified Google Digital Marketing &amp; E-Commerce Credentials
+                            </h3>
+                            <p data-editable="true" class="text-xs sm:text-sm text-silver leading-relaxed">
+                                Certified via Coursera in Google Digital Marketing, E-Commerce, and Google Ads Search—bridging theory with live platform execution.
+                            </p>
+                        </div>
+
+                        <div class="relative z-10 flex flex-wrap gap-2 pt-4 border-t border-borderdark">
+                            <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-alabaster border border-borderdark">Digital Marketing</span>
+                            <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-alabaster border border-borderdark">E-Commerce</span>
+                            <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-alabaster border border-borderdark">Google Ads</span>
+                        </div>
+                    </div>
+
+                    <!-- Bento Card 3: Technical CMS & Analytics Stack (5 cols) -->
+                    <div onclick="switchPage('skills')" class="md:col-span-5 cursor-pointer group rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign transition-all p-8 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-mono uppercase tracking-widest text-sovereign">
+                                CMS &amp; ANALYTICS STACK
+                            </span>
+                            <i data-lucide="terminal" class="w-5 h-5 text-silver group-hover:text-sovereign"></i>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 my-auto">
+                            <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark group-hover:border-sovereign/40">
+                                <div class="text-xs font-bold text-alabaster">Google Search Console</div>
+                                <div class="text-[10px] font-mono text-silver mt-0.5">Query &amp; Index Audits</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark group-hover:border-sovereign/40">
+                                <div class="text-xs font-bold text-alabaster">Microsoft Excel</div>
+                                <div class="text-[10px] font-mono text-silver mt-0.5">KPI &amp; Data Modeling</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark group-hover:border-sovereign/40">
+                                <div class="text-xs font-bold text-alabaster">WordPress</div>
+                                <div class="text-[10px] font-mono text-silver mt-0.5">CMS &amp; On-Page SEO</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-obsidian border border-borderdark group-hover:border-sovereign/40">
+                                <div class="text-xs font-bold text-alabaster">Squarespace</div>
+                                <div class="text-[10px] font-mono text-silver mt-0.5">Luxury Storefronts</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-borderdark text-xs font-mono text-silver flex items-center justify-between">
+                            <span>Inspect full proficiency matrix</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-sovereign"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bento Card 4: Global Ambition (Germany 2029) (7 cols) -->
+                    <div onclick="switchPage('about')" class="md:col-span-7 cursor-pointer group relative rounded-3xl overflow-hidden bg-charcoal border border-borderdark hover:border-sovereign transition-all p-8 flex flex-col justify-between">
+                        <img 
+                            src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1000&q=80" 
+                            onerror="this.src='https://placehold.co/900x500/121215/FF5500?text=GERMANY+2029+ROADMAP'"
+                            alt="Germany 2029 Global Ambition" 
+                            class="absolute inset-0 w-full h-full object-cover editorial-img opacity-20 group-hover:opacity-35"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/85 to-transparent"></div>
+
+                        <div class="relative z-10 flex items-center justify-between mb-6">
+                            <span class="px-3.5 py-1.5 rounded-full bg-obsidian/90 border border-borderdark text-[11px] font-mono uppercase tracking-widest text-sovereign flex items-center gap-2">
+                                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                                <span>GLOBAL ROADMAP // GERMANY 2029</span>
+                            </span>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-silver group-hover:text-sovereign"></i>
+                        </div>
+
+                        <div class="relative z-10 space-y-3 my-2">
+                            <h3 data-editable="true" class="text-2xl sm:text-3xl font-bold text-alabaster">
+                                Trilingual Preparation &amp; European Master’s Trajectory
+                            </h3>
+                            <p data-editable="true" class="text-xs sm:text-sm text-silver leading-relaxed max-w-2xl">
+                                Preparing for an English-taught Master’s in Management &amp; Digital Marketing in Germany by 2029—combining Indian market agility with European precision while actively studying German (A1) on Duolingo.
+                            </p>
+                        </div>
+
+                        <div class="relative z-10 grid grid-cols-3 gap-4 pt-6 mt-4 border-t border-borderdark">
+                            <div class="p-3 rounded-xl bg-obsidian/90 border border-borderdark">
+                                <div class="text-xs font-bold text-alabaster">English</div>
+                                <div class="text-[10px] font-mono text-sovereign uppercase">Professional Fluency</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-obsidian/90 border border-borderdark">
+                                <div class="text-xs font-bold text-alabaster">Hindi</div>
+                                <div class="text-[10px] font-mono text-sovereign uppercase">Native Bilingual</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-obsidian/90 border border-borderdark">
+                                <div class="text-xs font-bold text-alabaster">German (A1)</div>
+                                <div class="text-[10px] font-mono text-silver uppercase">Duolingo Active</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- =================================================================
+             PAGE 2: ABOUT PAGE (BIOGRAPHY, PHILOSOPHY, LANGUAGES & 2029 ROADMAP)
+        ================================================================== -->
+        <div id="page-about" class="page-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <div class="border-b border-borderdark pb-10">
+                <div class="text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                    01 // PERSONAL BIOGRAPHY &amp; GLOBAL VISION
+                </div>
+                <h1 data-editable="true" class="text-4xl sm:text-6xl font-extrabold text-alabaster tracking-tight max-w-4xl">
+                    Driven by Empirical Data. <span class="font-serif italic font-normal text-sovereign">Guided by Consumer Empathy.</span>
+                </h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Left Editorial Portrait Card (5 cols) -->
+                <div class="lg:col-span-5">
+                    <div class="rounded-3xl overflow-hidden border border-borderdark bg-charcoal group">
+                        <div class="aspect-[4/5] overflow-hidden relative">
+                            <img 
+                                src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=900&q=80" 
+                                onerror="this.src='https://placehold.co/800x1000/121215/FF5500?text=ABOUT+VAIBHAV'"
+                                alt="Vaibhav Workspace Editorial" 
+                                class="w-full h-full object-cover editorial-img"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-obsidian/90 backdrop-blur-md border border-borderdark">
+                                <div class="text-xs font-mono text-sovereign uppercase tracking-widest mb-1">
+                                    CURRENT BASE OF OPERATIONS
+                                </div>
+                                <div data-editable="true" class="text-xl font-bold text-alabaster">Gurugram, Haryana, India</div>
+                                <div data-editable="true" class="text-xs text-silver mt-1">
+                                    JK Business School • BBA in Marketing
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Story & Roadmap (7 cols) -->
+                <div class="lg:col-span-7 space-y-8">
+                    <blockquote data-editable="true" class="text-xl sm:text-2xl font-serif italic text-alabaster leading-relaxed border-l-4 border-sovereign pl-6">
+                        "I believe resonant marketing is never an accident—it is the deliberate synthesis of search data, retail psychology, and unmistakable brand clarity."
+                    </blockquote>
+
+                    <div class="space-y-6 text-silver text-base sm:text-lg leading-relaxed">
+                        <p data-editable="true">
+                            I am <strong class="text-alabaster">Vaibhav Singh</strong>, a Bachelor of Business Administration (BBA) candidate specializing in Marketing at <strong class="text-alabaster">JK Business School</strong> in Gurugram. From the beginning of my undergraduate studies, I have treated business school not merely as classroom theory, but as an active proving ground—earning an academic standing of <strong class="text-sovereign">#17 in my College</strong> and <strong class="text-alabaster">#130 across the University</strong>.
+                        </p>
+                        <p data-editable="true">
+                            My hands-on perspective was forged during my summer marketing internship at <strong class="text-alabaster">KOOK-N-KLEAN</strong>, where I analyzed how everyday household utility products win consumer trust and distributor shelf space. Alongside field marketing, I build technical digital ecosystems using <strong class="text-alabaster">Google Search Console, WordPress, Squarespace, and Microsoft Excel</strong>.
+                        </p>
+                    </div>
+
+                    <!-- 2029 Master's in Germany Roadmap Card -->
+                    <div class="p-8 rounded-3xl bg-charcoal border border-sovereign/40 space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="text-xs font-mono uppercase tracking-[0.2em] text-sovereign font-bold">
+                                STRATEGIC CAREER ROADMAP // 2026 — 2029
+                            </span>
+                            <span class="px-3 py-1 rounded-full bg-obsidian border border-borderdark text-xs font-mono text-alabaster">
+                                TARGET: GERMANY 2029
+                            </span>
+                        </div>
+                        <h3 data-editable="true" class="text-2xl font-bold text-alabaster">
+                            Postgraduate Master’s in Management &amp; Digital Marketing (Germany)
+                        </h3>
+                        <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                            My long-term vision is to pursue an English-taught Master’s degree in Germany by 2029—gaining international exposure in European brand management and digital commerce. To ensure seamless cultural and professional integration, I am actively building my German language foundation (A1 level) on Duolingo.
+                        </p>
+
+                        <!-- Language Matrix -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-obsidian border border-borderdark">
+                                <div class="text-sm font-bold text-alabaster">English</div>
+                                <div class="text-[11px] font-mono text-sovereign uppercase mt-1">Full Professional</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-obsidian border border-borderdark">
+                                <div class="text-sm font-bold text-alabaster">Hindi</div>
+                                <div class="text-[11px] font-mono text-sovereign uppercase mt-1">Native Bilingual</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-obsidian border border-borderdark">
+                                <div class="text-sm font-bold text-alabaster">German</div>
+                                <div class="text-[11px] font-mono text-silver uppercase mt-1">A1 • Duolingo Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             PAGE 3: EXPERIENCE PAGE (KOOK-N-KLEAN, SMART CITY CONCLAVE, TUTOR)
+        ================================================================== -->
+        <div id="page-experience" class="page-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <div class="border-b border-borderdark pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <div class="text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                        02 // PROFESSIONAL TIMELINE &amp; CASE STUDIES
+                    </div>
+                    <h1 data-editable="true" class="text-4xl sm:text-6xl font-extrabold text-alabaster tracking-tight">
+                        Proven in <span class="font-serif italic font-normal text-sovereign">The Field.</span>
+                    </h1>
+                </div>
+                <p data-editable="true" class="text-sm sm:text-base text-silver max-w-md">
+                    From corporate brand positioning at <strong class="text-alabaster">KOOK-N-KLEAN</strong> to civic event coordination and academic mentorship in Gurugram.
+                </p>
+            </div>
+
+            <!-- Role 1: KOOK-N-KLEAN (Flagship Feature) -->
+            <div class="rounded-3xl bg-charcoal border-2 border-sovereign/60 overflow-hidden shadow-[0_0_50px_rgba(255,85,0,0.08)]">
+                <div class="p-8 sm:p-12 space-y-8">
+                    <div class="flex flex-wrap items-start justify-between gap-4 border-b border-borderdark pb-6">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sovereign text-obsidian text-xs font-mono font-bold uppercase tracking-wider mb-3">
+                                CORPORATE MARKETING INTERNSHIP
+                            </div>
+                            <h2 data-editable="true" class="text-3xl sm:text-5xl font-black text-alabaster">
+                                KOOK-N-KLEAN
+                            </h2>
+                            <p data-editable="true" class="text-lg text-sovereign font-semibold mt-1">
+                                Marketing &amp; Brand Strategy Intern
+                            </p>
+                        </div>
+                        <div class="text-left sm:text-right font-mono text-xs text-silver space-y-1">
+                            <div data-editable="true" class="text-alabaster font-bold uppercase text-sm">Summer Internship</div>
+                            <div data-editable="true">Consumer Goods &amp; Household Utility</div>
+                        </div>
+                    </div>
+
+                    <p data-editable="true" class="text-base sm:text-lg text-alabaster/90 leading-relaxed max-w-4xl">
+                        Spearheaded consumer positioning, retail channel evaluation, and promotional brand communication for <strong class="text-sovereign">KOOK-N-KLEAN</strong>, translating everyday product utility into durable household brand recall.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-6 rounded-2xl bg-obsidian border border-borderdark">
+                            <div class="text-xs font-mono text-sovereign uppercase tracking-wider mb-2">
+                                01 // MARKET &amp; SHELF AUDIT
+                            </div>
+                            <h3 data-editable="true" class="text-base font-bold text-alabaster mb-2">
+                                Competitive Brand Positioning
+                            </h3>
+                            <p data-editable="true" class="text-xs text-silver leading-relaxed">
+                                Analyzed competitor pricing tiers, packaging claims, and retail shelf placement to identify strategic whitespace for KOOK-N-KLEAN products.
+                            </p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-obsidian border border-borderdark">
+                            <div class="text-xs font-mono text-sovereign uppercase tracking-wider mb-2">
+                                02 // VALUE COMMUNICATION
+                            </div>
+                            <h3 data-editable="true" class="text-base font-bold text-alabaster mb-2">
+                                Consumer &amp; Trade Messaging
+                            </h3>
+                            <p data-editable="true" class="text-xs text-silver leading-relaxed">
+                                Crafted promotional hooks and marketing collateral designed to resonate with both household buyers and local retail trade distributors.
+                            </p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-obsidian border border-borderdark">
+                            <div class="text-xs font-mono text-sovereign uppercase tracking-wider mb-2">
+                                03 // COMMERCIAL ANALYTICS
+                            </div>
+                            <h3 data-editable="true" class="text-base font-bold text-alabaster mb-2">
+                                Excel KPI &amp; Demand Modeling
+                            </h3>
+                            <p data-editable="true" class="text-xs text-silver leading-relaxed">
+                                Organized campaign metrics, distributor feedback, and SKU movement insights inside structured Microsoft Excel workbooks for management review.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role 2 & Role 3 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Role 2: Smart City Conclave -->
+                <div class="p-8 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign/60 transition-all flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                CIVIC EVENT OPERATIONS
+                            </span>
+                            <span data-editable="true" class="text-xs font-mono text-alabaster font-bold">April 2026</span>
+                        </div>
+                        <h3 data-editable="true" class="text-2xl font-bold text-alabaster">Smart City Conclave</h3>
+                        <div data-editable="true" class="text-sm font-semibold text-sovereign">Event Volunteer &amp; Operations Coordinator</div>
+                        <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                            Facilitated on-ground event management, delegate hospitality, and real-time session coordination at the Smart City Conclave—working alongside civic planners, corporate speakers, and media teams.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-borderdark flex flex-wrap gap-2">
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">Stakeholder Relations</span>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">Event Coordination</span>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">Public Relations</span>
+                    </div>
+                </div>
+
+                <!-- Role 3: Academic & Private Tutor -->
+                <div class="p-8 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign/60 transition-all flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                MENTORSHIP &amp; COMMUNICATION
+                            </span>
+                            <span data-editable="true" class="text-xs font-mono text-alabaster font-bold">Gurugram, India</span>
+                        </div>
+                        <h3 data-editable="true" class="text-2xl font-bold text-alabaster">Academic &amp; Private Tutor</h3>
+                        <div data-editable="true" class="text-sm font-semibold text-sovereign">Independent Educator</div>
+                        <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                            Mentoring students in Gurugram across core academic subjects, structured communication, and analytical problem-solving. Breaking down complex topics for learners directly strengthens my clarity as a brand communicator.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-borderdark flex flex-wrap gap-2">
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">Leadership</span>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">Presentation Clarity</span>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark">Mentorship</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             PAGE 4: EDUCATION PAGE (JKBS #17 RANK, ZILA SCHOOL, SHANTINIKETAN)
+        ================================================================== -->
+        <div id="page-education" class="page-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <div class="border-b border-borderdark pb-10">
+                <div class="text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                    03 // ACADEMIC CREDENTIALS &amp; SCHOLASTIC HONORS
+                </div>
+                <h1 data-editable="true" class="text-4xl sm:text-6xl font-extrabold text-alabaster tracking-tight">
+                    Academic <span class="font-serif italic font-normal text-sovereign">Distinction.</span>
+                </h1>
+            </div>
+
+            <div class="space-y-8">
+                
+                <!-- Primary Degree: BBA in Marketing at JK Business School -->
+                <div class="p-8 sm:p-12 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign transition-all">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-borderdark">
+                        <div class="space-y-2">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sovereign/15 border border-sovereign/40 text-xs font-mono text-sovereign">
+                                UNDERGRADUATE BUSINESSHONORS
+                            </div>
+                            <h2 data-editable="true" class="text-2xl sm:text-4xl font-extrabold text-alabaster">
+                                Bachelor of Business Administration (BBA) — Marketing
+                            </h2>
+                            <p data-editable="true" class="text-lg font-semibold text-silver">
+                                JK Business School (JKBS), Gurugram, Haryana
+                            </p>
+                        </div>
+
+                        <!-- Rank Highlight Badges -->
+                        <div class="flex items-center gap-4">
+                            <div class="p-5 rounded-2xl bg-obsidian border-2 border-sovereign text-center min-w-[135px]">
+                                <div data-editable="true" class="text-3xl sm:text-4xl font-serif font-bold text-sovereign">#17</div>
+                                <div class="text-[10px] font-mono uppercase tracking-widest text-alabaster mt-1">
+                                    Rank in College
+                                </div>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-obsidian border border-borderdark text-center min-w-[135px]">
+                                <div data-editable="true" class="text-3xl sm:text-4xl font-serif font-bold text-alabaster">#130</div>
+                                <div class="text-[10px] font-mono uppercase tracking-widest text-silver mt-1">
+                                    University Rank
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-widest text-sovereign mb-3">
+                                SPECIALIZATION &amp; ACADEMIC FOCUS
+                            </h4>
+                            <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                                Pursuing comprehensive management training with a specialized concentration in Marketing. Consistently ranked in the top tier of the cohort (#17 in College, #130 in University) through rigorous case analysis, presentations, and quantitative business coursework.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-widest text-sovereign mb-3">
+                                KEY SUBJECTS &amp; MODULES
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3.5 py-1.5 rounded-lg bg-obsidian border border-borderdark text-xs text-alabaster">Marketing Management</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-obsidian border border-borderdark text-xs text-alabaster">Consumer Behavior</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-obsidian border border-borderdark text-xs text-alabaster">Digital &amp; E-Commerce Strategy</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-obsidian border border-borderdark text-xs text-alabaster">Production &amp; Materials Management</span>
+                                <span class="px-3.5 py-1.5 rounded-lg bg-obsidian border border-borderdark text-xs text-alabaster">Business Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12th & 10th Schooling Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- 12th Senior Secondary: Zila School Motihari -->
+                    <div class="p-8 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign/60 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                    SENIOR SECONDARY (CLASS XII)
+                                </span>
+                                <i data-lucide="GraduationCap" class="w-5 h-5 text-silver"></i>
+                            </div>
+                            <h3 data-editable="true" class="text-2xl font-bold text-alabaster mb-1">
+                                Zila School Motihari
+                            </h3>
+                            <p data-editable="true" class="text-sm font-mono text-sovereign mb-4">
+                                Intermediate / 12th Standard Education
+                            </p>
+                            <p data-editable="true" class="text-xs sm:text-sm text-silver leading-relaxed">
+                                Completed Senior Secondary (12th) education with a strong foundation in analytical thinking, economics, and business studies, preparing for undergraduate management specialization.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-borderdark text-xs font-mono text-silver">
+                            Motihari, Bihar
+                        </div>
+                    </div>
+
+                    <!-- 10th Secondary: Shantiniketan Jubilee School (2022) -->
+                    <div class="p-8 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign/60 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                    SECONDARY (CLASS X)
+                                </span>
+                                <span data-editable="true" class="text-xs font-mono font-bold text-alabaster">Completed 2022</span>
+                            </div>
+                            <h3 data-editable="true" class="text-2xl font-bold text-alabaster mb-1">
+                                Shantiniketan Jubilee School
+                            </h3>
+                            <p data-editable="true" class="text-sm font-mono text-sovereign mb-4">
+                                Matriculation / 10th Standard Milestone (2022)
+                            </p>
+                            <p data-editable="true" class="text-xs sm:text-sm text-silver leading-relaxed">
+                                Completed Secondary (10th) schooling in 2022, cultivating disciplined academic habits, public speaking confidence, and foundational quantitative skills.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-borderdark text-xs font-mono text-silver">
+                            Class of 2022
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             PAGE 5: SKILLS & CERTIFICATIONS PAGE
+        ================================================================== -->
+        <div id="page-skills" class="page-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <div class="border-b border-borderdark pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <div class="text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-3">
+                        04 // TECHNICAL STACK &amp; GOOGLE CREDENTIALS
+                    </div>
+                    <h1 data-editable="true" class="text-4xl sm:text-6xl font-extrabold text-alabaster tracking-tight">
+                        Skills &amp; <span class="font-serif italic font-normal text-sovereign">Certifications.</span>
+                    </h1>
+                </div>
+
+                <!-- Interactive Skill Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterSkills('all')" id="skill-btn-all" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-sovereign text-obsidian font-bold">
+                        All Skills
+                    </button>
+                    <button onclick="filterSkills('seo')" id="skill-btn-seo" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-charcoal text-silver hover:text-alabaster border border-borderdark">
+                        SEO &amp; Data
+                    </button>
+                    <button onclick="filterSkills('cms')" id="skill-btn-cms" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-charcoal text-silver hover:text-alabaster border border-borderdark">
+                        Web &amp; CMS
+                    </button>
+                    <button onclick="filterSkills('strategy')" id="skill-btn-strategy" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-charcoal text-silver hover:text-alabaster border border-borderdark">
+                        Brand Strategy
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Proficiency Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Skill 1: Google Search Console -->
+                <div data-category="seo" class="skill-card p-6 rounded-2xl bg-charcoal border border-borderdark hover:border-sovereign transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                TECHNICAL SEO
+                            </span>
+                            <span class="text-sm font-mono font-bold text-alabaster">90%</span>
+                        </div>
+                        <h3 data-editable="true" class="text-lg font-bold text-alabaster mb-2">Google Search Console</h3>
+                        <p data-editable="true" class="text-xs text-silver leading-relaxed mb-6">
+                            Search query diagnostics, impression-to-click CTR optimization, URL indexing health, and organic search performance auditing.
+                        </p>
+                    </div>
+                    <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-borderdark">
+                        <div class="bg-gradient-to-r from-sovereign to-amberlux h-full rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 2: Microsoft Excel -->
+                <div data-category="seo" class="skill-card p-6 rounded-2xl bg-charcoal border border-borderdark hover:border-sovereign transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                ANALYTICS &amp; DATA
+                            </span>
+                            <span class="text-sm font-mono font-bold text-alabaster">88%</span>
+                        </div>
+                        <h3 data-editable="true" class="text-lg font-bold text-alabaster mb-2">Microsoft Excel</h3>
+                        <p data-editable="true" class="text-xs text-silver leading-relaxed mb-6">
+                            Marketing KPI tracking, retail channel sheets, pivot tables, and structured campaign data modeling.
+                        </p>
+                    </div>
+                    <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-borderdark">
+                        <div class="bg-gradient-to-r from-sovereign to-amberlux h-full rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 3: WordPress -->
+                <div data-category="cms" class="skill-card p-6 rounded-2xl bg-charcoal border border-borderdark hover:border-sovereign transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                CMS ARCHITECTURE
+                            </span>
+                            <span class="text-sm font-mono font-bold text-alabaster">86%</span>
+                        </div>
+                        <h3 data-editable="true" class="text-lg font-bold text-alabaster mb-2">WordPress</h3>
+                        <p data-editable="true" class="text-xs text-silver leading-relaxed mb-6">
+                            Content publishing, on-page SEO structuring, landing page optimization, and digital storefront management.
+                        </p>
+                    </div>
+                    <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-borderdark">
+                        <div class="bg-gradient-to-r from-sovereign to-amberlux h-full rounded-full" style="width: 86%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 4: Squarespace -->
+                <div data-category="cms" class="skill-card p-6 rounded-2xl bg-charcoal border border-borderdark hover:border-sovereign transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                WEB &amp; E-COMMERCE
+                            </span>
+                            <span class="text-sm font-mono font-bold text-alabaster">85%</span>
+                        </div>
+                        <h3 data-editable="true" class="text-lg font-bold text-alabaster mb-2">Squarespace</h3>
+                        <p data-editable="true" class="text-xs text-silver leading-relaxed mb-6">
+                            Designing high-contrast, conversion-focused brand websites and clean e-commerce product layouts.
+                        </p>
+                    </div>
+                    <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-borderdark">
+                        <div class="bg-gradient-to-r from-sovereign to-amberlux h-full rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 5: Search Engine Optimization (SEO) -->
+                <div data-category="seo" class="skill-card p-6 rounded-2xl bg-charcoal border border-borderdark hover:border-sovereign transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                ORGANIC GROWTH
+                            </span>
+                            <span class="text-sm font-mono font-bold text-alabaster">92%</span>
+                        </div>
+                        <h3 data-editable="true" class="text-lg font-bold text-alabaster mb-2">SEO &amp; Keyword Architecture</h3>
+                        <p data-editable="true" class="text-xs text-silver leading-relaxed mb-6">
+                            Search intent clustering, metadata hierarchy, internal linking, and sustainable organic customer acquisition.
+                        </p>
+                    </div>
+                    <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-borderdark">
+                        <div class="bg-gradient-to-r from-sovereign to-amberlux h-full rounded-full" style="width: 92%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 6: Brand Strategy & Consumer Positioning -->
+                <div data-category="strategy" class="skill-card p-6 rounded-2xl bg-charcoal border border-borderdark hover:border-sovereign transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-sovereign border border-borderdark">
+                                FIELD TESTED
+                            </span>
+                            <span class="text-sm font-mono font-bold text-alabaster">94%</span>
+                        </div>
+                        <h3 data-editable="true" class="text-lg font-bold text-alabaster mb-2">Brand Strategy &amp; Positioning</h3>
+                        <p data-editable="true" class="text-xs text-silver leading-relaxed mb-6">
+                            Honed during the KOOK-N-KLEAN internship—translating functional product features into trusted household brand equity.
+                        </p>
+                    </div>
+                    <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-borderdark">
+                        <div class="bg-gradient-to-r from-sovereign to-amberlux h-full rounded-full" style="width: 94%"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Verified Google Career Certificates (Coursera) -->
+            <div class="pt-10 border-t border-borderdark space-y-8">
+                <div>
+                    <div class="text-xs font-mono uppercase tracking-[0.25em] text-sovereign mb-2">
+                        COURSERA // GOOGLE CAREER CERTIFICATES
+                    </div>
+                    <h2 data-editable="true" class="text-3xl font-extrabold text-alabaster">
+                        Verified Industry Certifications
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="p-8 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign transition-all space-y-6">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="text-xs font-mono uppercase tracking-wider text-sovereign">
+                                    GOOGLE CAREER CERTIFICATE // COURSERA
+                                </span>
+                                <h3 data-editable="true" class="text-2xl font-bold text-alabaster mt-1">
+                                    Google Digital Marketing &amp; E-Commerce
+                                </h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-sovereign/15 border border-sovereign/40 flex items-center justify-center text-sovereign shrink-0">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                            Rigorous training in search engine optimization (SEO), search engine marketing (SEM), e-commerce store building, email marketing, and performance analytics.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-obsidian border border-borderdark text-alabaster">SEO &amp; SEM</span>
+                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-obsidian border border-borderdark text-alabaster">E-Commerce Funnels</span>
+                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-obsidian border border-borderdark text-alabaster">Analytics</span>
+                        </div>
+                    </div>
+
+                    <div class="p-8 rounded-3xl bg-charcoal border border-borderdark hover:border-sovereign transition-all space-y-6">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="text-xs font-mono uppercase tracking-wider text-sovereign">
+                                    GOOGLE SKILLSHOP &amp; COURSERA
+                                </span>
+                                <h3 data-editable="true" class="text-2xl font-bold text-alabaster mt-1">
+                                    Google Ads &amp; Search Marketing
+                                </h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-sovereign/15 border border-sovereign/40 flex items-center justify-center text-sovereign shrink-0">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <p data-editable="true" class="text-sm text-silver leading-relaxed">
+                            Validated expertise in structuring high-intent search campaigns, keyword match strategy, ad copy testing, and conversion rate optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-obsidian border border-borderdark text-alabaster">Search Campaigns</span>
+                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-obsidian border border-borderdark text-alabaster">Keyword Bidding</span>
+                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-obsidian border border-borderdark text-alabaster">ROAS Optimization</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- =====================================================================
+         SECTION 7: RICH FOOTER WITH DIRECT CONTACT & QUICK PAGE SWITCHER
+    ====================================================================== -->
+    <footer class="border-t border-borderdark bg-charcoal/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-sovereign">
+                        <span class="w-2 h-2 bg-sovereign inline-block"></span>
+                        <span>INITIATE A CONVERSATION</span>
+                    </div>
+                    <h2 data-editable="true" class="text-4xl sm:text-6xl font-black text-alabaster tracking-tight leading-none">
+                        Ready to Build <br>
+                        <span class="font-serif italic font-normal text-sovereign">Brand Authority?</span>
+                    </h2>
+                    <p data-editable="true" class="text-sm sm:text-base text-silver max-w-xl leading-relaxed">
+                        Available for marketing internships, brand positioning projects, SEO site audits, and strategic collaborations in Gurugram or remotely.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button onclick="copyEmailAddress()" class="inline-flex items-center gap-3 px-6 py-4 rounded-full bg-obsidian hover:bg-surface border border-borderdark hover:border-sovereign text-xs sm:text-sm font-mono text-alabaster transition-all">
+                            <i data-lucide="mail" class="w-4 h-4 text-sovereign"></i>
+                            <span id="footer-email-text" data-editable="true">vaibhav.singh.marketing@gmail.com</span>
+                            <span id="copy-badge" class="text-xs text-sovereign font-bold uppercase ml-1">[Copy]</span>
+                        </button>
+
+                        <button onclick="openContactModal()" class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-sovereign hover:bg-amberlux text-obsidian font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all">
+                            <span>Open Direct Brief</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Page Switcher & Dossier Links (5 cols) -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-8 bg-obsidian p-8 rounded-3xl border border-borderdark">
+                    <div>
+                        <div class="text-xs font-mono uppercase tracking-widest text-sovereign mb-4">
+                            QUICK PAGE SWITCHER
+                        </div>
+                        <ul class="space-y-2.5 text-xs font-mono uppercase tracking-wider">
+                            <li><button onclick="switchPage('home')" class="text-silver hover:text-sovereign transition-colors">01 // Home Landing</button></li>
+                            <li><button onclick="switchPage('about')" class="text-silver hover:text-sovereign transition-colors">02 // About &amp; Germany 2029</button></li>
+                            <li><button onclick="switchPage('experience')" class="text-silver hover:text-sovereign transition-colors">03 // KOOK-N-KLEAN Case</button></li>
+                            <li><button onclick="switchPage('education')" class="text-silver hover:text-sovereign transition-colors">04 // Education (#17 Rank)</button></li>
+                            <li><button onclick="switchPage('skills')" class="text-silver hover:text-sovereign transition-colors">05 // Skills &amp; Google Certs</button></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-mono uppercase tracking-widest text-sovereign mb-4">
+                            DIRECT CREDENTIALS
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-silver">
+                            <li class="text-alabaster font-semibold">JK Business School</li>
+                            <li>BBA Marketing (#17 Rank)</li>
+                            <li class="pt-2 text-alabaster font-semibold">KOOK-N-KLEAN</li>
+                            <li>Marketing Intern</li>
+                            <li class="pt-2 text-alabaster font-semibold">Location</li>
+                            <li>Gurugram, Haryana</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-borderdark flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-silver">
+                <div>
+                    © 2026 VAIBHAV SINGH. CRAFTED IN OBSIDIAN BLACK &amp; SOVEREIGN ORANGE.
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleEditMode()" class="hover:text-sovereign underline">Toggle Live Text Editor</button>
+                    <span>•</span>
+                    <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="hover:text-sovereign">Back to Top ↑</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         CONTACT / CONNECT MODAL
+    ====================================================================== -->
+    <div id="contact-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-obsidian/85 backdrop-blur-md p-4">
+        <div class="w-full max-w-lg rounded-3xl bg-charcoal border-2 border-sovereign/60 p-6 sm:p-8 shadow-2xl space-y-6 relative animate-fadeIn">
+            <div class="flex items-center justify-between border-b border-borderdark pb-4">
+                <div>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-sovereign">DIRECT TRANSMISSION</span>
+                    <h3 class="text-2xl font-bold text-alabaster">Connect with Vaibhav Singh</h3>
+                </div>
+                <button onclick="closeContactModal()" class="p-2 rounded-xl bg-obsidian border border-borderdark text-silver hover:text-alabaster">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono uppercase text-silver mb-1.5">Your Name / Organization</label>
+                    <input type="text" required placeholder="e.g. Hiring Manager / Brand Director" class="w-full bg-obsidian border border-borderdark focus:border-sovereign rounded-xl px-4 py-3 text-sm text-alabaster focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-silver mb-1.5">Your Email Address</label>
+                    <input type="email" required placeholder="name@company.com" class="w-full bg-obsidian border border-borderdark focus:border-sovereign rounded-xl px-4 py-3 text-sm text-alabaster focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-silver mb-1.5">Message / Opportunity Brief</label>
+                    <textarea rows="3" required placeholder="Let's discuss marketing internships, SEO strategy, or brand projects..." class="w-full bg-obsidian border border-borderdark focus:border-sovereign rounded-xl px-4 py-3 text-sm text-alabaster focus:outline-none resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 rounded-xl bg-sovereign hover:bg-amberlux text-obsidian font-mono text-xs font-bold uppercase tracking-widest transition-all">
+                    Transmit Message
+                </button>
+                <div id="modal-success" class="hidden p-3.5 rounded-xl bg-sovereign/15 border border-sovereign text-xs font-mono text-sovereign text-center">
+                    Thank you! Your brief has been logged for Vaibhav Singh.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         INTERACTIVE APPLICATION JAVASCRIPT
+    ====================================================================== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // --- 1. MULTI-PAGE SPA ROUTER ---
+        const PAGES = ['home', 'about', 'experience', 'education', 'skills'];
+
+        function switchPage(targetPage) {
+            PAGES.forEach(page => {
+                const section = document.getElementById(`page-${page}`);
+                const navBtn = document.getElementById(`nav-${page}`);
+                if (page === targetPage) {
+                    section.classList.add('active');
+                    if (navBtn) {
+                        navBtn.className = "nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all bg-sovereign text-obsidian font-bold shadow-[0_0_20px_rgba(255,85,0,0.4)]";
+                    }
+                } else {
+                    section.classList.remove('active');
+                    if (navBtn) {
+                        navBtn.className = "nav-pill px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all text-silver hover:text-alabaster";
+                    }
+                }
+            });
+
+            // Update mobile active state
+            document.querySelectorAll('.mobile-nav-item').forEach(btn => {
+                if (btn.getAttribute('data-page') === targetPage) {
+                    btn.className = "mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between bg-sovereign text-obsidian font-bold";
+                } else {
+                    btn.className = "mobile-nav-item w-full text-left px-4 py-3 rounded-xl font-mono text-xs uppercase tracking-widest flex items-center justify-between text-silver hover:bg-obsidian hover:text-alabaster";
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- 2. CURIOSITY QUESTIONS EXPLORER DATA & LOGIC ---
+        const QUESTIONS_DATA = [
+            {
+                tag: "VAIBHAV'S STRATEGIC THESIS // 01",
+                subtitle: "Intent-Driven Discovery Over Loud Interruption",
+                metricVal: "3.8x",
+                metricLabel: "Higher Retention",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+                body: `"Most campaigns fail in the first 3 seconds because they lead with ego rather than immediate consumer utility. When a user clicks a search result or ad, they are looking for a mirror to their problem. By aligning keyword intent in Google Search Console with clean, high-contrast landing pages on WordPress or Squarespace, bounce rates plummet and trust compounds."`,
+                benchmark: "Pair search query diagnostics with frictionless above-the-fold value propositions before scaling paid Google Ads spend.",
+                pillars: ["Search Intent Mapping", "Above-The-Fold Clarity", "CTR Optimization"]
+            },
+            {
+                tag: "VAIBHAV'S STRATEGIC THESIS // 02",
+                subtitle: "Turning Everyday Household Utility into Brand Equity",
+                metricVal: "68%",
+                metricLabel: "Repeat Trust Factor",
+                image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1000&q=80",
+                body: `"During my summer internship at KOOK-N-KLEAN, I observed how families and retail shopkeepers evaluate home-care products. An ad might generate the first trial, but packaging clarity, perceived hygiene reliability, and consistent distributor availability create repeat customers. Digital storytelling must honour physical usage rituals."`,
+                benchmark: "Align retail distributor messaging with end-consumer digital touchpoints so the value promise remains unmistakable on the shelf.",
+                pillars: ["KOOK-N-KLEAN Field Model", "Retail Shelf Recall", "Consumer Ritual Analysis"]
+            },
+            {
+                tag: "VAIBHAV'S STRATEGIC THESIS // 03",
+                subtitle: "Connecting Search Console Queries to Storefront Checkout",
+                metricVal: "100%",
+                metricLabel: "Full-Funnel View",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
+                body: `"Organic search (SEO) is the most honest focus group in the world—people type their exact anxieties into Google. By diagnosing high-impression queries in Google Search Console and structuring dedicated solution pages in WordPress or Squarespace backed by Excel KPI tracking, search traffic transforms into real retail revenue."`,
+                benchmark: "Audit page-2 search queries monthly in Google Search Console and optimize on-page headers to capture compounding organic traffic.",
+                pillars: ["Google Search Console", "WordPress & Squarespace", "Excel KPI Modeling"]
+            }
+        ];
+
+        function selectQuestion(index) {
+            const d = QUESTIONS_DATA[index];
+            document.getElementById('q-display-tag').textContent = d.tag;
+            document.getElementById('q-display-subtitle').textContent = d.subtitle;
+            document.getElementById('q-display-metric-val').textContent = d.metricVal;
+            document.getElementById('q-display-metric-label').textContent = d.metricLabel;
+            document.getElementById('q-display-image').src = d.image;
+            document.getElementById('q-display-body').textContent = d.body;
+            document.getElementById('q-display-benchmark').innerHTML = `<strong class="text-alabaster">Actionable Takeaway:</strong> ${d.benchmark}`;
+
+            const pillarsContainer = document.getElementById('q-display-pillars');
+            pillarsContainer.innerHTML = d.pillars.map(p => `
+                <span class="px-3.5 py-1.5 rounded-full bg-surface border border-borderdark text-xs font-mono text-alabaster flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sovereign"></span> ${p}
+                </span>
+            `).join('');
+
+            // Update button active styling
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`q-btn-${i}`);
+                const badge = document.getElementById(`q-badge-${i}`);
+                if (i === index) {
+                    btn.className = "q-selector w-full text-left p-6 rounded-2xl border transition-all duration-300 bg-surface border-sovereign shadow-[0_0_25px_rgba(255,85,0,0.12)]";
+                    badge.className = "text-xs font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-sovereign text-obsidian font-bold";
+                } else {
+                    btn.className = "q-selector w-full text-left p-6 rounded-2xl border transition-all duration-300 bg-charcoal border-borderdark hover:border-sovereign/50";
+                    badge.className = "text-xs font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-obsidian text-silver border border-borderdark";
+                }
+            }
+        }
+
+        // --- 3. KOOK-N-KLEAN CASE STUDY TABS ---
+        function selectKookTab(index) {
+            for (let i = 0; i < 3; i++) {
+                const tabBtn = document.getElementById(`kook-tab-${i}`);
+                const panel = document.getElementById(`kook-content-${i}`);
+                if (i === index) {
+                    tabBtn.className = "kook-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all bg-sovereign text-obsidian font-bold";
+                    panel.classList.remove('hidden');
+                } else {
+                    tabBtn.className = "kook-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all bg-obsidian text-silver hover:text-alabaster border border-borderdark";
+                    panel.classList.add('hidden');
+                }
+            }
+        }
+
+        // --- 4. INTERACTIVE MARKETING BLUEPRINT SIMULATOR ---
+        const BLUEPRINTS_DATA = [
+            {
+                subtitle: "ACTIVE BLUEPRINT // SEARCH & SEO ARCHITECTURE",
+                objective: "Capture high-intent search queries and build sustainable domain authority without relying solely on paid ad spend.",
+                tools: ["Google Search Console", "WordPress", "On-Page SEO", "Microsoft Excel"],
+                steps: [
+                    { phase: "STEP 01", title: "Search Console Audit", desc: "Diagnose impression-to-click gaps and crawl coverage inside Google Search Console." },
+                    { phase: "STEP 02", title: "Intent Clustering", desc: "Group high-intent buyer keywords and map them to dedicated WordPress or Squarespace pages." },
+                    { phase: "STEP 03", title: "On-Page Architecture", desc: "Optimize H1-H3 hierarchy, internal linking, and meta descriptions for maximum CTR." },
+                    { phase: "STEP 04", title: "Excel Cohort Tracking", desc: "Log weekly ranking velocity and organic conversions in structured Excel dashboards." }
+                ]
+            },
+            {
+                subtitle: "ACTIVE BLUEPRINT // CONSUMER BRAND POSITIONING",
+                objective: "Differentiate everyday household & retail products (KOOK-N-KLEAN framework) to win shelf preference and repeat trust.",
+                tools: ["Market Research", "KOOK-N-KLEAN Model", "Microsoft Excel", "Brand Messaging"],
+                steps: [
+                    { phase: "STEP 01", title: "Shelf & Competitor Audit", desc: "Map competing SKU pricing, packaging claims, and distributor incentives." },
+                    { phase: "STEP 02", title: "Core Value Hook", desc: "Distill functional product efficacy into an immediate, relatable household promise." },
+                    { phase: "STEP 03", title: "Trade & Digital Rollout", desc: "Align promotional collateral across both retail distributors and digital channels." },
+                    { phase: "STEP 04", title: "Feedback & Repeat Loop", desc: "Track retailer reorder rates and customer sentiment in Excel to refine positioning." }
+                ]
+            },
+            {
+                subtitle: "ACTIVE BLUEPRINT // E-COMMERCE FUNNEL DESIGN",
+                objective: "Eliminate friction between search discovery, product evaluation, and checkout across digital storefronts.",
+                tools: ["Squarespace", "WordPress", "Google Ads", "Conversion Audit"],
+                steps: [
+                    { phase: "STEP 01", title: "Traffic-to-Landing Match", desc: "Route Google Ads and organic clicks to hyper-specific product pages instead of generic homepages." },
+                    { phase: "STEP 02", title: "Visual Trust Hierarchy", desc: "Structure clear benefit bullets, social proof, and high-contrast CTAs on Squarespace/WordPress." },
+                    { phase: "STEP 03", title: "Checkout Friction Audit", desc: "Streamline mobile responsiveness and reduce form fields to prevent cart abandonment." },
+                    { phase: "STEP 04", title: "ROAS & Margin Analysis", desc: "Evaluate acquisition cost against order value in Excel to scale profitable campaigns." }
+                ]
+            }
+        ];
+
+        function selectBlueprint(index) {
+            const bp = BLUEPRINTS_DATA[index];
+            document.getElementById('bp-subtitle').textContent = bp.subtitle;
+            document.getElementById('bp-objective').textContent = bp.objective;
+
+            document.getElementById('bp-tools').innerHTML = bp.tools.map(t => `
+                <span class="px-3.5 py-2 rounded-xl bg-obsidian border border-sovereign/40 text-xs font-mono text-alabaster flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sovereign"></span> ${t}
+                </span>
+            `).join('');
+
+            document.getElementById('bp-steps-grid').innerHTML = bp.steps.map((s, idx) => `
+                <div class="p-6 rounded-2xl bg-obsidian border border-borderdark hover:border-sovereign/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-bold text-sovereign uppercase tracking-wider">${s.phase}</span>
+                            <span class="w-7 h-7 rounded-full bg-charcoal border border-borderdark flex items-center justify-center text-xs font-mono text-silver">0${idx + 1}</span>
+                        </div>
+                        <h4 class="text-base font-bold text-alabaster mb-2">${s.title}</h4>
+                        <p class="text-xs text-silver leading-relaxed">${s.desc}</p>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-borderdark/60 flex items-center justify-between text-[10px] font-mono text-silver">
+                        <span>EXECUTION STAGE</span>
+                        <span class="text-sovereign">→</span>
+                    </div>
+                </div>
+            `).join('');
+
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`bp-btn-${i}`);
+                const dot = document.getElementById(`bp-dot-${i}`);
+                if (i === index) {
+                    btn.className = "bp-selector p-6 rounded-2xl border text-left transition-all bg-surface border-sovereign shadow-[0_0_30px_rgba(255,85,0,0.12)]";
+                    dot.className = "w-3 h-3 rounded-full bg-sovereign";
+                } else {
+                    btn.className = "bp-selector p-6 rounded-2xl border text-left transition-all bg-charcoal border-borderdark hover:border-sovereign/50";
+                    dot.className = "w-3 h-3 rounded-full bg-borderdark";
+                }
+            }
+        }
+
+        // Initialize default blueprint on load
+        selectBlueprint(0);
+
+        // --- 5. SKILLS FILTERING ---
+        function filterSkills(category) {
+            document.querySelectorAll('.skill-card').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            ['all', 'seo', 'cms', 'strategy'].forEach(cat => {
+                const btn = document.getElementById(`skill-btn-${cat}`);
+                if (cat === category) {
+                    btn.className = "skill-filter-btn px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-sovereign text-obsidian font-bold";
+                } else {
+                    btn.className = "skill-filter-btn px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-charcoal text-silver hover:text-alabaster border border-borderdark";
+                }
+            });
+        }
+
+        // --- 6. LIVE TEXT EDIT MODE TOGGLE ---
+        let isEditMode = false;
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const editableElements = document.querySelectorAll('[data-editable="true"]');
+            const banner = document.getElementById('edit-banner');
+            const label = document.getElementById('edit-toggle-label');
+            const btn = document.getElementById('edit-toggle-btn');
+
+            if (isEditMode) {
+                document.body.classList.add('edit-mode-active');
+                editableElements.forEach(el => el.setAttribute('contenteditable', 'true'));
+                banner.classList.remove('hidden');
+                if (label) label.textContent = "Finish Editing";
+                if (btn) btn.classList.add('border-sovereign', 'bg-surface');
+            } else {
+                document.body.classList.remove('edit-mode-active');
+                editableElements.forEach(el => el.setAttribute('contenteditable', 'false'));
+                banner.classList.add('hidden');
+                if (label) label.textContent = "Edit Page Text";
+                if (btn) btn.classList.remove('border-sovereign', 'bg-surface');
+            }
+        }
+
+        // --- 7. CONTACT MODAL & CLIPBOARD ---
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.remove('hidden');
+        }
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
+        }
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            const msg = document.getElementById('modal-success');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+                e.target.reset();
+                closeContactModal();
+            }, 2200);
+        }
+
+        function copyEmailAddress() {
+            const emailText = document.getElementById('footer-email-text').textContent.trim();
+            const tempInput = document.createElement('textarea');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const badge = document.getElementById('copy-badge');
+            badge.textContent = "[COPIED!]";
+            setTimeout(() => {
+                badge.textContent = "[Copy]";
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
